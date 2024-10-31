@@ -23,7 +23,24 @@
                 <ul class="tasks-list">
                     <li class="">
                         <div class="task">
-                            <input type="checkbox" name="isCheck" id="">
+                            <!-- <input type="checkbox" name="isCheck" id=""> -->
+                            <button class="check"></button>
+                            <span>Estudar AlphineJs</span>
+                            <button class="close">x</button>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="task">
+                            <!-- <input type="checkbox" name="isCheck" id=""> -->
+                            <button class="check"></button>
+                            <span>Estudar AlphineJs</span>
+                            <button class="close">x</button>
+                        </div>
+                    </li>
+                    <li class="">
+                        <div class="task">
+                            <!-- <input type="checkbox" name="isCheck" id=""> -->
+                            <button class="check"></button>
                             <span>Estudar AlphineJs</span>
                             <button class="close">x</button>
                         </div>
@@ -34,6 +51,18 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let isCheck = document.querySelectorAll('.check')
+
+        isCheck.forEach((el) => {
+            el.addEventListener('click', () => {
+                el.classList.toggle('active')
+                el.parentNode.children[1].classList.toggle('name-riscado')
+            })
+        })
+
+    </script>
 </body>
 
 </html>
