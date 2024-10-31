@@ -1,0 +1,85 @@
+:root {
+    --gb-primary: #212121;
+    --input-color-primary: #f3f3f3;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-color-primary: #f3f3f3;
+    --font-color-secondary: #000;
+}
+
+body {
+    background-color: var(--gb-primary);
+    color: var(--font-color-primary);
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    padding: 1rem;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: 10rem 1fr;
+    width: 60%;
+    border: 1px solid white;
+    /* gap: 1rem; */
+}
+
+.header {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    padding: 1rem;
+    text-align: center;
+    /* border: 1px solid blue; */
+    gap: 1rem
+}
+
+.title {
+    font-size: 16pt;
+    font-weight: bold;
+}
+
+.content-list {
+    /* border: 1px solid green; */
+    /* padding: 1rem; */
+}
+
+.tasks-list {
+    display: grid;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .4rem;
+    border-radius: 8px;
+    background-color: #e4e4e4;
+    color: #000;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+.search-todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input[type="text"] {
+    background-color: var(--input-color-primary);
+    width: 80% !important;
+    padding: .5rem;
+    border-radius: 8px;
+    border: 0;
+    outline: none;
+    font-size: 12pt;
+}

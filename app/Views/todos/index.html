@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link rel="stylesheet" href="/assets/css/styles-copy.css">
+    <title>App Todo AlphineJs</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="header">
+                <span class="title">Todos</span>
+                <div class="search-todo">
+                    <input type="text" name="add" placeholder="Adicione sua task aqui..." />
+                </div>
+            </div>
+
+            <div class="content-list">
+                <ul class="tasks-list">
+                    <li class="">
+                        <div class="task">
+                            <input type="checkbox" name="isCheck" id="">
+                            <span>Estudar AlphineJs</span>
+                            <button class="close">x</button>
+                        </div>
+                    </li>
+                </ul>
+
+                {% include 'todos/partials/footer.html' %}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
