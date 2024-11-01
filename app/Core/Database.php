@@ -12,7 +12,7 @@ class Database
     public function __construct()
     {
         try {
-            $this->connection = new PDO('sqlite:' . __DIR__ . "../data/todo_list.sqlite");
+            $this->connection = new PDO('sqlite:' . __DIR__ . "/../data/todo_list.sqlite");
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             echo "Erro ao estabelecer conexão com o banco de dados: " . $e->getMessage();

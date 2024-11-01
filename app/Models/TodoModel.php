@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Core\Database;
 use PDO;
 
-class Todo
+class TodoModel
 {
     private $id;
     private $title;
@@ -44,7 +44,7 @@ class Todo
             $resultInsert = $stmt->execute([
                 ':title'  => $this->title,
                 ':description' => $this->description,
-                ':isFinished' => $this->isFinished ? 1 : 0
+                ':isFinished' => $this->isFinished ? true : false
             ]);
 
             if ($resultInsert) {
@@ -59,10 +59,9 @@ class Todo
     public static function getAll() {
         $db = (new Database())->getConnection();
         $sql = "SELECT * FROM todos";
-        // $stmt = $this->db->query($sql);
         $stmt = $db->query($sql);
 
-        return $stmt->fetchAll(PDO::FETCH_CLASS, self::class);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     public static function find($id) {

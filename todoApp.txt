@@ -1,0 +1,12 @@
+Todo app task:
+
+[x] - Estrutura do projeto
+[x] - Definicão do layout
+[] - Implementar tudo com AlphineJs
+    [] - Criação de interação completa
+    [] - Criação da task
+    [] - Edição da task
+    [] - Remoção da task
+    [] - Atualização da task
+[] - Salvar no banco de dados
+[] - Sistema de login
