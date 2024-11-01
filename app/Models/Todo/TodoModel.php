@@ -7,10 +7,10 @@ use PDO;
 
 class TodoModel
 {
-    private $id;
-    private $title;
-    private $description;
-    private $isFinished = false;
+    protected $id;
+    protected $title;
+    protected $description;
+    protected $isFinished = false;
 
     private $db;
 
@@ -25,46 +25,35 @@ class TodoModel
 
     public function save()
     {
-        if ($this->id) {
-            //Atualiza a task existente
-            $sql = "UPDATE todos SET title = :title, description = :description, is_finished = :isFinished WHERE id = :id";
-            $stmt = $this->db->prepare($sql);
+        //Insere uma nova task
+        $sql = "INSERT INTO todos (title, description, isFinished) VALUES (:title, :description, :isFinished)";
+        $stmt = $this->db->prepare($sql);
 
-            return $stmt->execute([
-                ':title' => $this->title,
-                ':description' => $this->description,
-                ':isFinished' => $this->isFinished,
-                ':id' => $this->id
-            ]);
-        } else {
-            //Insere uma nova task
-            $sql = "INSERT INTO todos (title, description, isFinished) VALUES (:title, :description, :isFinished)";
-            $stmt = $this->db->prepare($sql);
+        $resultInsert = $stmt->execute([
+            ':title'  => $this->title,
+            ':description' => $this->description,
+            ':isFinished' => $this->isFinished ? true : false
+        ]);
 
-            $resultInsert = $stmt->execute([
-                ':title'  => $this->title,
-                ':description' => $this->description,
-                ':isFinished' => $this->isFinished ? true : false
-            ]);
-
-            if ($resultInsert) {
-                $this->id = $this->db->lastInsertId();
-                return true;
-            }
-
-            return false;
+        if ($resultInsert) {
+            $this->id = $this->db->lastInsertId();
+            return true;
         }
+
+        return false;
     }
 
-    public static function getAll() {
+    public static function getAll()
+    {
         $db = (new Database())->getConnection();
         $sql = "SELECT * FROM todos";
         $stmt = $db->query($sql);
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    public static function find($id) {
+
+    public static function find($id)
+    {
         $db = (new Database())->getConnection();
         $sql = "SELECT * FROM todos WHERE id = :id";
         $stmt = $db->prepare($sql);
@@ -73,8 +62,9 @@ class TodoModel
         return $stmt->fetchObject(self::class);
     }
 
-    public function delete() {
-        if($this->id) {
+    public function delete()
+    {
+        if ($this->id) {
             $sql = "DELETE FROM todos WHERE id = :id";
             $stmt = $this->db->prepare($sql);
 
@@ -113,7 +103,7 @@ class TodoModel
         return $this->isFinished;
     }
 
-    public function setFinished($isFinished)
+    public function setisFinished($isFinished)
     {
         $this->isFinished = $isFinished;
     }

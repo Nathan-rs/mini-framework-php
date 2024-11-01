@@ -1,0 +1,10 @@
+GET http://localhost:2000/
+###
+
+GET http://localhost:2000/item/1
+
+###
+
+DELETE http://localhost:2000/delete/2
+
+###

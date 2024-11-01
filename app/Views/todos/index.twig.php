@@ -20,6 +20,8 @@
         <div class="container">
             <span class="title">{{ title }}</span>
 
+            {{ messageErro }}
+
             <div class="main" x-data="{ count: 0 }"
                 @update-count.window="count = count + $event.detail"
                 @remove-task.window="count = Math.max(0, count - 1)">
@@ -32,7 +34,7 @@
                     <ul class="tasks-list">
 
                         {% for todo in todos %}
-                        {{ item.todoItem(todo.title, todo.description, todo.isFinished) }}
+                            {{ item.todoItem(todo.title, todo.description, todo.isFinished) }}
                         {% endfor %}
 
                     </ul>

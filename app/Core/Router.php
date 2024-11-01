@@ -11,6 +11,12 @@ namespace App\Core;
 class Router
 {
     private $routes = [];
+    private $view;
+
+    public function __construct()
+    {
+        $this->view = new View();
+    }
 
     public function get($path, $callback)
     {
@@ -27,6 +33,11 @@ class Router
         $this->addRoute('PUT', $path, $callback);
     }
 
+    public function delete($path, $callback)
+    {
+        $this->addRoute('DELETE', $path, $callback);
+    }
+
     private function addRoute($method, $path, $callback)
     {
         $this->routes[] = [
@@ -36,6 +47,11 @@ class Router
         ];
     }
 
+    public function regexIDPath($path)
+    {
+        return preg_replace('/\{(\w+)\}/', '([^/]+)', $path);
+    }
+
     public function resolve()
     {
 
@@ -43,13 +59,17 @@ class Router
         $requestMethod = $_SERVER['REQUEST_METHOD'];
 
         foreach ($this->routes as $route) {
-            if ($route['method'] === $requestMethod && $route['path'] === $requestUri) {
-                return call_user_func($route['callback']);
+            $pattern = $this->regexIDPath($route['path']);
+
+            if ($route['method'] === $requestMethod && preg_match("#^$pattern$#", $requestUri, $matches)) {
+                array_shift($matches);
+                return call_user_func_array($route['callback'], $matches);
             }
         }
 
         http_response_code(404);
-        echo "404 Not Found";
+        $this->view->render('errors/404.twig.php');
+        // echo "404 Not Found";
         return null;
     }
 }

@@ -175,3 +175,46 @@ input[type="text"] {
 .footer button:hover {
     text-decoration: underline;
 }
+
+/* Erros page 404 */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 3rem;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    /* border: 1px solid #f3f3f3; */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f3f3f3;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+/* .error-container img {
+    width: 80%;
+    height: 80%;
+} */
