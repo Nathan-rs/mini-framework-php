@@ -3,7 +3,7 @@
 namespace App\Controllers\TodoController;
 
 use App\Controllers\Controller;
-use App\Models\TodoModel;
+use App\Models\Todo\TodoModel;
 
 class TodoController extends Controller {
 
