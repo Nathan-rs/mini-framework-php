@@ -1,9 +1,11 @@
 :root {
     --gb-primary: #212121;
+    --gb-secondary: #f3f3f3;
     --input-color-primary: #f3f3f3;
     --font-primary: 'Montserrat', sans-serif;
-    --font-color-primary: #f3f3f3;
-    --font-color-secondary: #000;
+    --font-color-primary: #f5f5f5;
+    --font-color-secondary: #111;
+    --color-grey-line: #999999;
 }
 
 body {
@@ -16,51 +18,73 @@ body {
     justify-content: center;
     width: 100%;
     height: 100%;
-    border: 1px solid red;
     padding: 1rem;
 }
 
 .container {
-    display: grid;
-    grid-template-rows: 10rem 1fr;
-    width: 60%;
-    border: 1px solid white;
-    /* gap: 1rem; */
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    padding: 0 1rem 1rem 1rem;
 }
 
 .header {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    padding: 1rem;
-    text-align: center;
-    /* border: 1px solid blue; */
-    gap: 1rem
+    display: flex;
+    flex-direction: column;
 }
 
 .title {
-    font-size: 16pt;
-    font-weight: bold;
+    font-size: 5rem;
+    text-align: center;
 }
 
 .content-list {
-    /* border: 1px solid green; */
-    /* padding: 1rem; */
+    display: grid;
+}
+
+.main {
+    display: grid;
+    box-shadow: 0 6px 10px rgba(255, 255, 255, .4);
+    
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+    0 8px 0 -3px #f6f6f6,
+    0 9px 1px -3px rgba(0, 0, 0, 0.2),
+    0 16px 0 -6px #f6f6f6,
+    0 17px 2px -6px rgba(0, 0, 0, 0.2); */
+
+    box-shadow: 0 2px 4px 0 rgba(255, 255, 255, .1),
+	            0 25px 50px 0 rgba(255, 255, 255, .1);
 }
 
 .tasks-list {
     display: grid;
-    padding: 1rem;
-    gap: 1rem;
 }
 
+
 .task {
+    position: relative;
     display: flex;
-    align-items: center;
     gap: .5rem;
-    padding: .4rem;
-    border-radius: 8px;
-    background-color: #e4e4e4;
+    padding: 1rem;
+    align-items: center;
+    background-color: var(--input-color-primary);
     color: #000;
+    border-bottom: 1px solid var(--color-grey-line);
+}
+
+.close {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: .2rem;
+    width: 2rem;
+}
+
+.close:hover {
+    cursor: pointer;
+    border: 1px solid red;
+    border-radius: 4px;
 }
 
 input[type="checkbox"] {
@@ -69,17 +93,128 @@ input[type="checkbox"] {
 }
 
 .search-todo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    background-color: var(--gb-secondary);
+    border-bottom: 1px solid var(--color-grey-line);
+}
+
+.check {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--gb-primary);
+}
+
+.check.active {
+    border: 1px solid #01a767;
+    background-color: #01a767;
+}
+
+.name-riscado {
+    text-decoration: line-through;
 }
 
 input[type="text"] {
-    background-color: var(--input-color-primary);
-    width: 80% !important;
-    padding: .5rem;
-    border-radius: 8px;
+    background: rgba(0, 0, 0, .003);
+    padding: 1rem;
     border: 0;
     outline: none;
     font-size: 12pt;
 }
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--gb-secondary);
+    color: #000;
+    height: 3rem;
+    padding: 1rem;
+}
+
+.footer:before {
+    content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.content-filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--font-color-secondary);
+    height: 3rem;
+    gap: 1rem;
+}
+
+.content-filter a {
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 3px 7px;
+    color: (var(--font-color-secondary));
+}
+
+/* .content-filter a {
+    border: 1px solid #ce4646;
+} */
+
+.content-filter a:hover {
+    border: 1px solid #ce4646;
+}
+
+.footer button:hover {
+    text-decoration: underline;
+}
+
+/* Erros page 404 */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 3rem;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 50%;
+    /* border: 1px solid #f3f3f3; */
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #f3f3f3;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+/* .error-container img {
+    width: 80%;
+    height: 80%;
+} */
