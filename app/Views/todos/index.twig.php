@@ -27,14 +27,18 @@
                 @remove-task.window="count = Math.max(0, count - 1)">
 
                 <div class="search-todo">
-                    <input type="text" name="add" placeholder="Adicione sua task aqui..." />
+                    <input
+                        type="text"
+                        name="add"
+                        placeholder="Adicione sua task aqui..."
+                        @keydown.enter.prevent="console.log('Enter clickad')" />
                 </div>
 
-                <div class="content-list">
+                <div class=" content-list">
                     <ul class="tasks-list">
 
                         {% for todo in todos %}
-                            {{ item.todoItem(todo.title, todo.description, todo.isFinished) }}
+                        {{ item.todoItem(todo.id, todo.title, todo.description, todo.isFinished) }}
                         {% endfor %}
 
                     </ul>
