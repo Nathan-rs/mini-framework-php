@@ -68,7 +68,7 @@ class Router
         }
 
         http_response_code(404);
-        $this->view->render('errors/404.twig.php');
+        $this->view->render('errors.404');
         // echo "404 Not Found";
         return null;
     }

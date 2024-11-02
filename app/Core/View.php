@@ -16,6 +16,9 @@ class View {
     }
 
     public function render(string $template, array $data = []) {
+        $template = str_replace('.' , '/', $template);
+        $template = $template . '.twig.php';
+        
         echo $this->twig->render($template, $data);
     }
 }

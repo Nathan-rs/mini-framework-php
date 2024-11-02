@@ -19,7 +19,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = $this->todo::getAll();
-        $this->view->render('todos/index.twig.php', ['title' => 'Todos', 'todos' => $todos]);
+        $this->view->render('todos.index', ['title' => 'Todos', 'todos' => $todos]);
     }
 
     public function create()
@@ -30,9 +30,9 @@ class TodoController extends Controller
         $this->todo->setIsFinished(false);
 
         if ($this->todo->save()) {
-            $this->view->render('todos/index.twig.php', ['messageErro' => '']);
+            $this->view->render('todos.index', ['messageErro' => '']);
         } else {
-            $this->view->render('todos/index.twig.php', ['messageErro' => 'Erro ao salvar a task']);
+            $this->view->render('todos.index', ['messageErro' => 'Erro ao salvar a task']);
         }
     }
 
@@ -41,9 +41,9 @@ class TodoController extends Controller
         $todo = $this->todo::find($id);
 
         if($todo->delete()) {
-            $this->view->render('todos/index.twig.php');
+            $this->view->render('todos.index');
         } else {
-            $this->view->render('todos/index.twig.php', ['messageErro' => 'Erro ao deletar a task: ' . $todo->getId()]);
+            $this->view->render('todos.index', ['messageErro' => 'Erro ao deletar a task: ' . $todo->getId()]);
         }
     }
 }
