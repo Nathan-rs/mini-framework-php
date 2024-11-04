@@ -22,17 +22,35 @@ class TodoController extends Controller
         $this->view->render('todos.index', ['title' => 'Todos', 'todos' => $todos]);
     }
 
+    public function findItem($id)
+    {
+        $todo = $this->todo::getItem($id);
+        $this->view->render('todos.index', ['todos' => $todo]);
+    }
+
     public function create()
     {
-
-        $this->todo->setTitle($_POST['title']);
+        $this->todo->setTitle($_POST['description']);
         $this->todo->setDescription($_POST['description']);
         $this->todo->setIsFinished(false);
 
         if ($this->todo->save()) {
-            $this->view->render('todos.index', ['messageErro' => '']);
+            $this->view->redirect('/');
         } else {
             $this->view->render('todos.index', ['messageErro' => 'Erro ao salvar a task']);
+        }
+
+        return $this->view->render('todos.index', ['messageErro' => 'Erro ao salvar a task! parametros errados']);
+    }
+
+    public function update($id)
+    {
+        $todo = $this->todo::find($id);
+
+        if ($todo->update(['isFinished' => 0, 'description' => 'Task atualizada'])) {
+            $this->view->redirect('/');
+        } else {
+            $this->view->render('todos.index', ['messageErro' => 'Erro ao atualizar a task: ' . $todo->getId()]);
         }
     }
 
@@ -40,10 +58,12 @@ class TodoController extends Controller
     {
         $todo = $this->todo::find($id);
 
-        if($todo->delete()) {
-            $this->view->render('todos.index');
+        if ($todo && $todo->delete()) {
+            // $this->view->render('todos.index', ['messageErro' => 'Elemento deletado com sucesso: ' . $todo->getId()]);
+            echo json_encode(['status' => 'success', 'message' => 'Elemento deletado com sucesso.']);
         } else {
-            $this->view->render('todos.index', ['messageErro' => 'Erro ao deletar a task: ' . $todo->getId()]);
+            echo json_encode(['status' => 'error', 'message' => 'Erro ao deletar a task.']);
+            // $this->view->render('todos.index', ['messageErro' => 'Erro ao deletar a task: ' . $todo->getId()]);
         }
     }
 }

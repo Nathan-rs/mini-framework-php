@@ -156,7 +156,7 @@ input[type="text"] {
     gap: 1rem;
 }
 
-.content-filter a {
+.content-filter input[type="button"] {
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 3px;
@@ -168,7 +168,7 @@ input[type="text"] {
     border: 1px solid #ce4646;
 } */
 
-.content-filter a:hover {
+.content-filter input[type="button"]:hover {
     border: 1px solid #ce4646;
 }
 

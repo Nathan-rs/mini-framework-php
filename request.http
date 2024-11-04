@@ -1,10 +1,23 @@
-GET http://localhost:2000/
+GET http://localhost:2000/1
 ###
 
 GET http://localhost:2000/item/1
 
 ###
 
-DELETE http://localhost:2000/delete/2
+POST http://localhost:2000/create
+
+###
+POST http://localhost:2000
+Content-Type: application/x-www-form-urlencoded
+
+description=Teste+de+criacao+de+task
+###
+
+PUT http://localhost:2000/26
+
+###
+
+DELETE http://localhost:2000/66
 
 ###

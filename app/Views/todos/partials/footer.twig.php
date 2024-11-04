@@ -1,11 +1,13 @@
 <footer class="footer">
     <span x-text="`${count} item left`"></span>
-    <ul class="content">
-        <li class="content-filter">
-            <a class="btn-filter">All</a>
-            <a class="btn-filter">Active</a>
-            <a class="btn-filter">Completed</a>
-        </li>
-    </ul>
+    <form action="" method="POST">
+        <ul class="content">
+            <li class="content-filter">
+                <input type="button" name="all" value="All" class="btn-filter">
+                <input type="button" name="active" value="Active" class="btn-filter">
+                <input type="button" name="completed" value="Completed" class="btn-filter">
+            </li>
+        </ul>
+    </form>
     <button id="count-task">Clear completed</button>
 </footer>

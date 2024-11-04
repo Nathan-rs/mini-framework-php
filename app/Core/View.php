@@ -21,4 +21,9 @@ class View {
         
         echo $this->twig->render($template, $data);
     }
+
+    public function redirect(string $uri) {
+        header('Location: ' . $uri, true, 302);
+        exit;
+    }
 }

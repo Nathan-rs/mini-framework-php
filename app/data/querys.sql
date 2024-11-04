@@ -6,10 +6,12 @@ CREATE TABLE IF NOT EXISTS todos (
     isFinished BOOLEAN DEFAULT false
 );
 
+use todo_list;
+
 INSERT INTO todos (title, description, isFinished) VALUES ('Estudar SQLite','Estudando os comando sql', false);
 
 SELECT * FROM todos;
 
-DELETE FROM todos WHERE id = 2;
+DELETE FROM todos WHERE id = 4;
 
 DROP TABLE todos;

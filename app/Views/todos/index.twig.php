@@ -18,7 +18,7 @@
 <body>
     <div class="wrapper">
         <div class="container">
-            <span class="title">{{ title }}</span>
+            <span class="title">Todos</span>
 
             {{ messageErro }}
 
@@ -27,11 +27,13 @@
                 @remove-task.window="count = Math.max(0, count - 1)">
 
                 <div class="search-todo">
-                    <input
-                        type="text"
-                        name="add"
-                        placeholder="Adicione sua task aqui..."
-                        @keydown.enter.prevent="console.log('Enter clickad')" />
+                    <form action="" method="POST">
+                        <input
+                            type="text"
+                            name="description"
+                            required
+                            placeholder="Adicione sua task aqui..." />
+                    </form>
                 </div>
 
                 <div class=" content-list">
@@ -43,12 +45,13 @@
 
                     </ul>
                 </div>
-
+                {% if todos is not empty %}
                 {% include 'todos/partials/footer.twig.php' %}
+                {% endif %}
             </div>
         </div>
     </div>
-    <!-- <script src="/assets/js/script.js"></script> -->
+    <script src="/assets/js/alphineFunc.js"></script>
 </body>
 
 </html>

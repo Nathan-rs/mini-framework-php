@@ -8,9 +8,13 @@ $todoController = new TodoController();
 $route = new Router();
 
 $route->get('/', [$todoController, 'index']);
-$route->get('/item/{id}', function ($id) {
-    echo 'Rota GET ITEM com id: ' . $id;
-});
-$route->delete('/delete/{id}', [$todoController, 'delete']);
+
+$route->get('/{id}', [$todoController, 'findItem']);
+
+$route->post('/', [$todoController, 'create']);
+
+$route->put('/{id}', [$todoController, 'update']);
+
+$route->delete('/{id}', [$todoController, 'delete']);
 
 $route->resolve();

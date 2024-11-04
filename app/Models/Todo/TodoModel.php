@@ -52,6 +52,15 @@ class TodoModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public static function getItem($id) {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * FROM todos WHERE id = :id";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':id' => $id]);
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function find($id)
     {
         $db = (new Database())->getConnection();
@@ -62,8 +71,41 @@ class TodoModel
         return $stmt->fetchObject(self::class);
     }
 
+    public static function findComplete() {
+        $db = (new Database())->getConnection();
+        $sql = "SELECT * FROM todos WHERE isFinished = :isFinished";
+        $stmt = $db->prepare($sql);
+        $stmt->execute([':isFinished' => true]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function update($data)
+    {
+        $execute = [];
+
+        $params = array_map(function ($key) {
+            return $key . ' = :' . $key;
+        }, array_keys($data));
+
+        foreach ($data as $key => $value) {
+            $execute[':' . $key] = $value;
+        }
+
+        $fields = implode(',', $params);
+
+        $sql = 'UPDATE todos SET ' . $fields . ' WHERE id = :id';
+        $execute[':id'] = $this->id;
+
+        $stmt = $this->db->prepare($sql);
+
+        return $stmt->execute($execute);
+    }
+
     public function delete()
     {
+        // fazer um find antes de deletar para popular o objeto e poder usar o this, isso no controller
+
         if ($this->id) {
             $sql = "DELETE FROM todos WHERE id = :id";
             $stmt = $this->db->prepare($sql);
